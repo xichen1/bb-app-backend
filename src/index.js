@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const Book = require('./models/book');
 
 const app = express();
@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.get('/api/books', (req, res) => {
   Book.find({}).then(books => {
-    res.json(books)
+    res.json(books);
   });
 });
 
@@ -37,7 +37,7 @@ app.post('/api/books', (req, res) => {
     title: body.title,
     author: body.author,
     about: body.about,
-    available: "on shelf"
+    available: 'on shelf'
   });
 
   newBook.save().then(savedBook => {
@@ -46,14 +46,14 @@ app.post('/api/books', (req, res) => {
 });
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
-}
+  response.status(404).send({ error: 'unknown endpoint' });
+};
 
 // handler of requests with unknown endpoint
-app.use(unknownEndpoint)
+app.use(unknownEndpoint);
 
 const errorHandler = (error, request, response, next) => {
-  console.error(error.message)
+  console.error(error.message);
 
   if (error.name === 'CastError' && error.kind === 'ObjectId') {
     return response.status(400).send({ error: 'malformatted id' });
@@ -62,10 +62,11 @@ const errorHandler = (error, request, response, next) => {
   }
 
   next(error);
-}
+};
 
-app.use(errorHandler)
+app.use(errorHandler);
 
+// eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

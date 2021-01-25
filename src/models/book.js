@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
+// eslint-disable-next-line no-undef
 const url = process.env.MONGODB_URI;
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
   .then(result => {
-    console.log('connected to MongoDB')
+    console.log('connected to MongoDB' + result);
   })
   .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message)
+    console.log('error connecting to MongoDB:', error.message);
   });
 
 const bookSchema = new mongoose.Schema({
@@ -24,15 +25,15 @@ const bookSchema = new mongoose.Schema({
     required: true
   },
   available: String
-})
+});
 
 bookSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
-    delete returnedObject._id
-    delete returnedObject.__v
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
   }
 });
 
 
-module.exports = mongoose.model('Book', bookSchema)
+module.exports = mongoose.model('Book', bookSchema);

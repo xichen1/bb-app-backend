@@ -1,0 +1,46 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'run', 'deploy:full' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 verbose run-script [ 'predeploy:full', 'deploy:full', 'postdeploy:full' ]
+5 info lifecycle bb-app-backend@1.0.0~predeploy:full: bb-app-backend@1.0.0
+6 silly lifecycle bb-app-backend@1.0.0~predeploy:full: no script for predeploy:full, continuing
+7 info lifecycle bb-app-backend@1.0.0~deploy:full: bb-app-backend@1.0.0
+8 verbose lifecycle bb-app-backend@1.0.0~deploy:full: unsafe-perm in lifecycle true
+9 verbose lifecycle bb-app-backend@1.0.0~deploy:full: PATH: /usr/share/npm/bin/node-gyp-bin:/mnt/c/Users/ppx/Desktop/bb-app-backend/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/Java/jdk-14.0.2/bin:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Python38/Scripts/:/mnt/c/Python38/:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/bin:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/libnvvp:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files (x86)/PharosSystems/Core:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Intel/WiFi/bin/:/mnt/c/Program Files/Common Files/Intel/WirelessCommon/:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2019.5.0/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/Yarn/bin/:/mnt/c/Program Files (x86)/gdipp/:/mnt/c/Program Files (x86)/SMLNJ/bin/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/c/Users/ppx/anaconda3:/mnt/c/Users/ppx/anaconda3/Library/mingw-w64/bin:/mnt/c/Users/ppx/anaconda3/Library/usr/bin:/mnt/c/Users/ppx/anaconda3/Library/bin:/mnt/c/Users/ppx/anaconda3/Scripts:/mnt/c/Users/ppx/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm Community Edition 2018.3.4/bin:/mnt/c/Users/ppx/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/ppx/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/ppx/AppData/Local/Microsoft/WindowsApps:/mnt/c/MinGW/bin:/mnt/c/Users/ppx/AppData/Roaming/npm:/mnt/c/Program Files/Racket:/mnt/c/Program Files/CMake/bin:/mnt/c/Program Files/qemu:/mnt/c/Program Files/JetBrains/PyCharm Community Edition 2020.1.2/bin:/mnt/c/Users/ppx/AppData/Local/Yarn/bin:/mnt/c/Program Files/heroku/bin:/mnt/c/Users/ppx/AppData/Local/Programs/MiKTeX/miktex/bin/x64/:/mnt/c/Program Files/JetBrains/IntelliJ IDEA 2020.3.1/bin:/mnt/c/Program Files/PostgreSQL/9.6/data:/mnt/c/Program Files/PostgreSQL/9.6/bin:/mnt/c/Program Files/MySQL/MySQL Server 8.0/bin:/mnt/c/Program Files/apache-maven-3.6.3/bin:/mnt/c/Program Files/Apache Software Foundation/Tomcat 8.5/bin
+10 verbose lifecycle bb-app-backend@1.0.0~deploy:full: CWD: /mnt/c/Users/ppx/Desktop/bb-app-backend
+11 silly lifecycle bb-app-backend@1.0.0~deploy:full: Args: [ '-c',
+11 silly lifecycle   'npm run build:ui && git add . && git commit -m uibuild && npm run deploy' ]
+12 silly lifecycle bb-app-backend@1.0.0~deploy:full: Returned: code: 1  signal: null
+13 info lifecycle bb-app-backend@1.0.0~deploy:full: Failed to exec deploy:full script
+14 verbose stack Error: bb-app-backend@1.0.0 deploy:full: `npm run build:ui && git add . && git commit -m uibuild && npm run deploy`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/usr/share/npm/lib/utils/lifecycle.js:232:16)
+14 verbose stack     at emitTwo (events.js:126:13)
+14 verbose stack     at EventEmitter.emit (events.js:214:7)
+14 verbose stack     at ChildProcess.<anonymous> (/usr/share/npm/lib/utils/spawn.js:24:14)
+14 verbose stack     at emitTwo (events.js:126:13)
+14 verbose stack     at ChildProcess.emit (events.js:214:7)
+14 verbose stack     at maybeClose (internal/child_process.js:925:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+15 verbose pkgid bb-app-backend@1.0.0
+16 verbose cwd /mnt/c/Users/ppx/Desktop/bb-app-backend
+17 error Linux 4.4.0-19041-Microsoft
+18 error argv "/usr/bin/node" "/usr/bin/npm" "run" "deploy:full"
+19 error node v8.10.0
+20 error npm  v3.5.2
+21 error code ELIFECYCLE
+22 error bb-app-backend@1.0.0 deploy:full: `npm run build:ui && git add . && git commit -m uibuild && npm run deploy`
+22 error Exit status 1
+23 error Failed at the bb-app-backend@1.0.0 deploy:full script 'npm run build:ui && git add . && git commit -m uibuild && npm run deploy'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the bb-app-backend package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     npm run build:ui && git add . && git commit -m uibuild && npm run deploy
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs bb-app-backend
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls bb-app-backend
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

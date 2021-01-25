@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const url = process.env.MONGODB_URI;
-console.log('connecting to', url);
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
   .then(result => {
@@ -12,9 +11,18 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFind
   });
 
 const bookSchema = new mongoose.Schema({
-  title: String,
-  author: String,
-  about: String,
+  title: {
+    type: String,
+    required: true
+  },
+  author: {
+    type: String,
+    required: true
+  },
+  about: {
+    type: String,
+    required: true
+  },
   available: String
 })
 

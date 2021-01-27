@@ -12,7 +12,7 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFind
     console.log('error connecting to MongoDB:', error.message);
   });
 
-const bookSchema = new mongoose.Schema({
+const bookDetailSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -26,15 +26,20 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  bookDetail: {
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ],
+  book: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'BookDetail'
+    ref: 'Book'
   }
 });
 
-
-bookSchema.plugin(uniqueValidator);
-bookSchema.set('toJSON', {
+bookDetailSchema.plugin(uniqueValidator);
+bookDetailSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -42,5 +47,5 @@ bookSchema.set('toJSON', {
   }
 });
 
-const Book = mongoose.model('Book', bookSchema);
-module.exports = Book;
+const BookDetail = mongoose.model('BookDetail', bookDetailSchema);
+module.exports = BookDetail;

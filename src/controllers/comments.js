@@ -1,7 +1,17 @@
 const commentsRouter = require('express').Router();
+const jwt = require('jsonwebtoken');
 const BookDetail = require('../models/bookDetail');
 const Comment = require('../models/comment');
 const User = require('../models/user');
+
+const getTokenFrom = request => {
+  const authorization = request.get('authorization');
+  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+    console.log(authorization.substring(7));
+    return authorization.substring(7);
+  }
+  return null;
+};
 
 commentsRouter.get('/', (req, res) => {
   Comment.find({}).then(comments => {
@@ -24,11 +34,16 @@ commentsRouter.get('/:id', (req, res, next) => {
 
 commentsRouter.post('/', async (req, res, next) => {
   const body = req.body;
+  const token = getTokenFrom(req);
+  const decodedToken = jwt.verify(token, process.env.SECRET);
+  if (!token || !decodedToken.id) {
+    return res.status(401).json({ error: 'token missing or invalid' });
+  }
   if (body === undefined) {
     return res.status(400).json({ error: 'missing' });
   }
 
-  const user = await User.findById(body.userId);
+  const user = await User.findById(decodedToken.id);
   const bookDetail = await BookDetail.findById(body.bookDetailId);
 
   const newComment = new Comment({

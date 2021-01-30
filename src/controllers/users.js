@@ -8,6 +8,11 @@ usersRouter.post('/', async (req, res, next) => {
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(body.password, saltRounds).catch(err => console.log(err.message));
 
+  const oldUser = await User.findOne({ username: body.username });
+  if (oldUser) {
+    return res.status(403).json({ error: 'already occupied' });
+  }
+
   const user = new User({
     username: body.username,
     name: body.name,

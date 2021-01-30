@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('express-async-errors');
 const express = require('express');
 const cors = require('cors');
 const booksRouter = require('./controllers/books');
@@ -38,7 +39,7 @@ const errorHandler = (error, request, response, next) => {
   } else if (error.name === 'JsonWebTokenError') {
     return response.status(401).json({ error: 'invalid token' });
   }
-
+  console.log(123);
   next(error);
 };
 

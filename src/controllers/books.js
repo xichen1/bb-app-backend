@@ -20,7 +20,7 @@ booksRouter.get('/:id', (req, res, next) => {
     });
 });
 
-booksRouter.post('/', async (req, res, next) => {
+booksRouter.post('/', async (req, res) => {
   const body = req.body;
   if (body === undefined) {
     return res.status(400).json({ error: 'missing' });
@@ -31,7 +31,7 @@ booksRouter.post('/', async (req, res, next) => {
     about: body.about
   });
 
-  const savedBook = await newBook.save().catch(error => next(error));
+  const savedBook = await newBook.save();
 
   res.json(savedBook);
 });

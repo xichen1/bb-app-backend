@@ -27,19 +27,20 @@ bookDetailsRouter.post('/', async (req, res, next) => {
     return res.status(400).json({ error: 'missing' });
   }
   const book = await Book.findById(body.book);
+  console.log(book);
 
-  const newBook = new BookDetail({
+  const newBookDetail = new BookDetail({
     title: body.title,
     author: body.author,
     about: body.about,
     book: book._id
   });
 
-  const savedBook = await newBook.save().catch(error => next(error));
-  book.bookDetail = savedBook._id;
+  const savedBookDetail = await newBookDetail.save().catch(error => next(error));
+  book.bookDetail = savedBookDetail._id;
   await book.save().catch(error => next(error));
 
-  res.json(savedBook);
+  res.json(savedBookDetail);
 });
 
 bookDetailsRouter.put('/:id', async (req, res, next) => {

@@ -1,12 +1,24 @@
 require('dotenv').config();
 require('express-async-errors');
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const booksRouter = require('./controllers/books');
 const usersRouter = require('./controllers/users');
 const commentsRouter = require('./controllers/comments');
 const bookDetailsRouter = require('./controllers/bookDetails');
 const loginRouter = require('./controllers/login');
+
+const url = process.env.MONGODB_URI;
+
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+  .then(result => {
+    console.log('connected to MongoDB' + result);
+  })
+  .catch((error) => {
+    console.log('error connecting to MongoDB:', error.message);
+  });
+
 
 const app = express();
 app.use(cors());

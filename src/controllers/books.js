@@ -4,18 +4,16 @@ const BookDetail = require('../models/bookDetail');
 
 booksRouter.get('/', async (req, res) => {
   const books = await Book.find({}).populate('bookDetail');
-
   res.json(books);
 });
 
-booksRouter.get('/:id', (req, res) => {
-  Book.findById(req.params.id).then(book => {
-    if (book) {
-      res.json(book);
-    } else {
-      res.status(404).end();
-    }
-  });
+booksRouter.get('/:id', async (req, res) => {
+  const book = Book.findById(req.params.id);
+  if (book) {
+    res.json(book);
+  } else {
+    res.status(404).end();
+  }
 });
 
 booksRouter.post('/', async (req, res) => {

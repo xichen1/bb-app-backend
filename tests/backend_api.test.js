@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-const test_helper = require('./test_helper');
-const Book = require('../src/models/book');
-// const supertest = require('supertest');
-// const app = require('../src/app');
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const supertest = require('supertest');
+const app = require('../src/app');
 
+const mongodb = new MongoMemoryServer();
+
+const api = supertest(app);
 
 beforeAll(async () => {
   const uri = await mongodb.getUri();
@@ -11,11 +13,33 @@ beforeAll(async () => {
   await mongoose.connect(uri, mongooseOpts);
 });
 
-afterEach(async () => await test_helper.clearDatabase());
+afterAll(async () => {
+  await mongoose.disconnect();
+  await mongodb.stop();
+});
 
-afterAll(async () => await test_helper.closeDatabase());
 
 test('books are returned as json', async () => {
-  const count = await Book.count();
-  expect(count).toEqual(0);
+  await api
+    .get('/api/books')
+    .expect(200)
+    .expect('Content-Type', /application\/json/);
+});
+
+test('book can be posted', async () => {
+  const book = {
+    title: 'testbook',
+    author: 'testauthor',
+    about: 'testabout'
+  };
+
+  await api.post('/api/books')
+    .send(book)
+    .expect(200)
+    .expect('Content-Type', /application\/json/);
+
+  const response = await api.get('/api/books');
+  console.log(response.body);
+  const titles = response.body.map(r => r.title);
+  expect(titles).toContain('testbook');
 });

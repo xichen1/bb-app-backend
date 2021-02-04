@@ -2,10 +2,9 @@ const bookDetailsRouter = require('express').Router();
 const BookDetail = require('../models/bookDetail');
 const Book = require('../models/book');
 
-bookDetailsRouter.get('/', (req, res) => {
-  BookDetail.find({}).then(books => {
-    res.json(books);
-  });
+bookDetailsRouter.get('/', async (req, res) => {
+  const bookDetails = await BookDetail.find({}).populate('comments');
+  res.json(bookDetails);
 });
 
 bookDetailsRouter.get('/:id', (req, res) => {

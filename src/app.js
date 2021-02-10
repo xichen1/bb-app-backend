@@ -26,11 +26,14 @@ app.use('/api/bookdetails', bookDetailsRouter);
 
 app.use('/api/login', loginRouter);
 
-// handler of requests with unknown endpoint
-// app.use(middleware.unknownEndpoint);
+
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  // console.log(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
+
+// handler of requests with unknown endpoint
+app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
 module.exports = app;

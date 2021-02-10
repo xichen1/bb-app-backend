@@ -28,7 +28,6 @@ app.use('/api/login', loginRouter);
 
 
 app.get('/*', function (req, res) {
-  // console.log(path.join(__dirname, 'build', 'index.html'));
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 

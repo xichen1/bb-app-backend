@@ -1,6 +1,7 @@
 require('express-async-errors');
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const booksRouter = require('./controllers/books');
 const usersRouter = require('./controllers/users');
 const commentsRouter = require('./controllers/comments');
@@ -26,7 +27,10 @@ app.use('/api/bookdetails', bookDetailsRouter);
 app.use('/api/login', loginRouter);
 
 // handler of requests with unknown endpoint
-app.use(middleware.unknownEndpoint);
+// app.use(middleware.unknownEndpoint);
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 app.use(middleware.errorHandler);
 
 module.exports = app;

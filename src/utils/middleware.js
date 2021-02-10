@@ -1,4 +1,5 @@
 const logger = require('./logger');
+const path = require('path');
 
 const requestLogger = (request, response, next) => {
   logger.info('Method: ', request.method);
@@ -8,7 +9,8 @@ const requestLogger = (request, response, next) => {
 };
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).redirect('/404');
+  response.sendFile(path.join(__dirname, 'build', 'index.html'));
+  // response.status(404);
   // response.status(404).send({ error: 'unknown endpoint' });
 };
 

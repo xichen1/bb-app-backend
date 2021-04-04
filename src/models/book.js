@@ -5,7 +5,6 @@ const bookSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique: true
   },
   author: {
     type: String,
@@ -15,12 +14,16 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  isbn: {
+    type: String,
+    required: true,
+    unique: true
+  },
   bookDetail: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'BookDetail'
   }
 });
-
 
 bookSchema.plugin(uniqueValidator);
 bookSchema.set('toJSON', {

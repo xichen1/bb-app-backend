@@ -24,7 +24,8 @@ booksRouter.post('/', async (req, res) => {
   const newBook = new Book({
     title: body.title,
     author: body.author,
-    about: body.about
+    about: body.about,
+    isbn: body.isbn
   });
 
   const savedBook = await newBook.save();
@@ -34,6 +35,7 @@ booksRouter.post('/', async (req, res) => {
     title: savedBook.title,
     author: savedBook.author,
     about: savedBook.about,
+    isbn: savedBook.isbn,
     book: savedBook._id
   });
 

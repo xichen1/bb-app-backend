@@ -4,8 +4,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const bookDetailSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   author: {
     type: String,
@@ -14,6 +13,11 @@ const bookDetailSchema = new mongoose.Schema({
   about: {
     type: String,
     required: true
+  },
+  isbn: {
+    type: String,
+    required: true,
+    unique: true
   },
   comments: [
     {
